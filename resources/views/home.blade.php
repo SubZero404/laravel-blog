@@ -1,23 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="w-100">
-    <div class="row justify-content-center">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
+    <div class="m-3">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active"><i class="bi bi-house"></i> Home</li>
+            </ol>
+        </nav>
     </div>
-</div>
+
+    <div class="container-fluid">
+        <h1 class="text-danger text-center">Home</h1>
+    </div>
 @endsection

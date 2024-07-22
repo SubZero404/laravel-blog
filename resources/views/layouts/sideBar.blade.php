@@ -4,15 +4,15 @@
             <i class="bi bi-strava fs-2"></i> STRAVA
         </a>
     </nav>
-    <ul class="nav nav-fill flex-column m-2">
 
+    <ul class="nav nav-fill flex-column m-2">
         <li class="text-white-50 fw-bold mb-2">
-            <small>DATA MANAGEMENT</small>
+            <small>ADMIN DASHBOARD</small>
         </li>
 
         <li class="nav-item fs-6 px-2 py-3">
-            <a href="#" class="nav-link p-0 text-decoration-none text-white text-start">
-                <i class="me-2 bi bi-grid-1x2-fill"></i> Dashboard
+            <a href="{{ route('home') }}" class="nav-link p-0 text-decoration-none text-white text-start">
+                <i class="me-2 bi bi-grid-1x2-fill"></i> Analysis
             </a>
         </li>
         <li class="nav-item fs-6 px-2 py-3">
@@ -33,17 +33,22 @@
 
 
         <li class="text-white-50 fw-bold mb-2 mt-4">
-            <small>BLOG MANAGEMENT</small>
+            <small>POST MANAGEMENT</small>
         </li>
 
         <li class="nav-item fs-6 px-2 py-3">
-            <a href="#" class="nav-link p-0 text-decoration-none text-white text-start">
-                <i class="me-2 bi bi-chat-quote-fill"></i> Blog List & Edit
+            <a href="{{ route('post') }}" class="nav-link p-0 text-decoration-none text-white text-start">
+                <i class="me-2 bi bi-chat-quote-fill"></i> Post Lists
             </a>
         </li>
         <li class="nav-item fs-6 px-2 py-3">
             <a href="#" class="nav-link p-0 text-decoration-none text-white text-start">
                 <i class="me-2 bi bi-plus-circle-fill"></i> Create
+            </a>
+        </li>
+        <li class="nav-item fs-6 px-2 py-3">
+            <a href="{{ route('category') }}" class="nav-link p-0 text-decoration-none text-white text-start">
+                <i class="me-2 bi bi-collection-fill"></i> Category
             </a>
         </li>
 
@@ -54,7 +59,7 @@
 
         <li class="nav-item fs-6 px-2 py-3">
             <a href="#" class="nav-link p-0 text-decoration-none text-white text-start">
-                <i class="me-2 bi bi-people-fill"></i> User List & Edit
+                <i class="me-2 bi bi-people-fill"></i> User Lists
             </a>
         </li>
 
