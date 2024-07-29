@@ -14,7 +14,10 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @vite(['resources/sass/app.scss','resources/js/app.js'])
+
+    {{--    style--}}
+    @stack('style')
 </head>
 <body>
     <main id="app" class="container-fluid">
@@ -27,7 +30,7 @@
                 <!--            navigation menu bar end-->
 
                 <!--            navigation bar start-->
-                <div class="col-12 col-sm-9 col-lg-10">
+                <div class="col-12 col-sm-9 col-lg-10 vh-100 overflow-scroll scrollbar">
                     @include('layouts.navigationBar')
                     @yield('content')
                 </div>
@@ -40,5 +43,15 @@
             @yield('content')
         @endguest
     </main>
+
+    @stack('script')
+
+{{--    show status by sweetalert 2--}}
+    <script type="module">
+        @if( session('status') )
+        showToast("{{ session('status') }}")
+        @endif
+    </script>
+
 </body>
 </html>

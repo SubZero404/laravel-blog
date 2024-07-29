@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-black m-2 rounded-1">
+<nav class="navbar navbar-expand-md navbar-dark bg-black m-2 rounded-1 sticky-top">
     <div class="d-flex container-fluid justify-content-between">
         <!-- Left Side Of Navbar -->
         <div class="px-5">

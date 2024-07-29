@@ -14,10 +14,8 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 //Post
-Route::get('/post', [PostController::class, 'index'])->name('post');
-Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
-Route::get('/post/show', [PostController::class, 'show'])->name('post.show');
-Route::get('/post/edit', [PostController::class, 'edit'])->name('post.edit');
+Route::resource('/post',PostController::class);
 
 //Category
-Route::get('/category', [CategoryController::class, 'index'])->name('category');
+Route::resource('/category', CategoryController::class);
+

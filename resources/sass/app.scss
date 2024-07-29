@@ -19,3 +19,22 @@ body {
 .scrollbar::-webkit-scrollbar {
     width: 0;
 }
+
+.custom-btn {
+    background-color: #FFFFFF20;
+    border: 0;
+}
+
+.custom-btn:hover {
+    background-color: #FFFFFF00;
+    transform: scale(1.3);
+}
+
+.window-expand {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 10000;
+}

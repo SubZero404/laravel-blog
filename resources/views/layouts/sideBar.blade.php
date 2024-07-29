@@ -37,17 +37,17 @@
         </li>
 
         <li class="nav-item fs-6 px-2 py-3">
-            <a href="{{ route('post') }}" class="nav-link p-0 text-decoration-none text-white text-start">
+            <a href="{{ route('post.index') }}" class="nav-link p-0 text-decoration-none text-white text-start">
                 <i class="me-2 bi bi-chat-quote-fill"></i> Post Lists
             </a>
         </li>
         <li class="nav-item fs-6 px-2 py-3">
-            <a href="#" class="nav-link p-0 text-decoration-none text-white text-start">
+            <a href="{{ route('post.create') }}" class="nav-link p-0 text-decoration-none text-white text-start">
                 <i class="me-2 bi bi-plus-circle-fill"></i> Create
             </a>
         </li>
         <li class="nav-item fs-6 px-2 py-3">
-            <a href="{{ route('category') }}" class="nav-link p-0 text-decoration-none text-white text-start">
+            <a href="{{ route('category.index') }}" class="nav-link p-0 text-decoration-none text-white text-start">
                 <i class="me-2 bi bi-collection-fill"></i> Category
             </a>
         </li>
