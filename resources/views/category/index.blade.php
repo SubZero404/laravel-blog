@@ -17,8 +17,8 @@
 {{--    breadcrumb end--}}
 
 {{--    card start--}}
-    <div class="container-fluid p-0 overflow-scroll scrollbar" id="category-session">
-        <div class="card bg-black w-100">
+    <div class="container-fluid p-0 overflow-scroll scrollbar window-session bg-black rounded">
+        <div class="card bg-black border-0 w-100">
 {{--            card header--}}
             <div class="card-header d-flex justify-content-between mx-2">
                 <div class="d-flex align-items-center">
@@ -163,8 +163,7 @@
         function toggle_window(e) {
             e.children[0].classList.toggle('d-none')
             e.children[1].classList.toggle('d-none')
-            document.getElementById('category-session').classList.toggle('window-expand')
-
+            document.querySelector('.window-session').classList.toggle('window-expand')
         }
 
     </script>
