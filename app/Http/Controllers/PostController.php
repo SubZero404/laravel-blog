@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use Auth;
 use Illuminate\Support\Str;
 
 class PostController extends Controller
@@ -37,7 +38,7 @@ class PostController extends Controller
         $post->description = $request->description;
         $post->excerpt = Str::words($request->description,100,"...");
         $post->category_id = $request->category;
-        $post->user_id = \Auth::id();
+        $post->user_id = Auth::id();
         if ($request->hasFile('feature-image')) {
             $image_file = $request->file('feature-image');
             $file_name = uniqid()."_feature_image".$image_file->extension();
@@ -53,7 +54,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return view('post.show');
+        return view('post.show',compact('post'));
     }
 
     /**
@@ -69,7 +70,23 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
-        //
+        $post->title = $request->title;
+        $post->slug = Str::slug($request->title);
+        $post->description = $request->description;
+        $post->excerpt = Str::words($request->description,100,'...');
+        $post->category_id = $request->category;
+        $post->user_id = Auth::id();
+
+        if ($request->hasFile('featured-image')) {
+            $image_file = $request->file('featured-image');
+            $image_name = uniqid()."featured_image".$image_file->extension();
+            $image_file->storeAs('public',$image_name);
+            $post->featured_image = $image_name;
+        }
+
+        $post->update();
+
+        return redirect()->route('post.index')->with('status','Successfully Updated Post!');
     }
 
     /**
@@ -77,6 +94,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return redirect()->route('post.index')->with('status','Successfully Deleted Post!');
     }
 }

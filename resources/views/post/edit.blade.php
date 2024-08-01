@@ -46,7 +46,6 @@
                 <div class="d-flex align-items-center">
                     <i class="bi bi-plus-circle-fill fs-4"></i>
                     <span class="fw-bolder ms-2">Edit Post</span>
-                    <small>ID : {{ $post->id }}</small>
                 </div>
                 <div class="d-flex align-items-center">
                     <button class="btn btn-dark custom-btn me-2" onclick="toggle_window(this)">
@@ -69,13 +68,14 @@
             </div>
             {{--            card body--}}
             <div class="card-body">
-                <form action="{{ route('post.store') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('post.update',$post->id) }}" method="post" enctype="multipart/form-data">
                     @csrf
+                    @method('PATCH')
                     <div class="row flex-lg-row">
                         <div class="col-lg-9 col-12">
                             <div class="p-2 mb-3">
                                 <label for="title" class="form-label ms-3 mb-3">TITLE</label>
-                                <input type="text" id="title" name="title" value="{{ old('title') }}"
+                                <input type="text" id="title" name="title" value="{{ old('title', $post->title) }}"
                                        class="form-control @error('title') is-invalid @enderror" >
                                 @error('title') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
@@ -84,7 +84,7 @@
                                 <div class="bg-black rounded">
                                     <textarea id="description" name="description"
                                               class="note-icon-summernote @error('description') is-invalid @enderror"
-                                    >{{ old('description') }}</textarea>
+                                    >{{ old('description', $post->description) }}</textarea>
                                     @error('description') <div class="invalid-feedback">{{ $message }}</div> @enderror
                                 </div>
                                 @push('script')
@@ -103,7 +103,7 @@
                                 <select name="category" id="category"
                                         class="form-select @error('category') is-invalid @enderror">
                                     @foreach(\App\Models\Category::all() as $category)
-                                        <option value="{{ $category->id }}" @if($category->id == old('category')) selected @endif>{{ $category->title }}</option>
+                                        <option value="{{ $category->id }}" @if($category->id == old('category', $post->category_id)) selected @endif>{{ $category->title }}</option>
                                     @endforeach
                                 </select>
                                 @error('category') <div class="invalid-feedback">{{ $message }}</div> @enderror
@@ -131,10 +131,14 @@
                                     </script>
                                 @endpush
 
-                                <input type="file" id="feature-image-input" value="{{ old('feature-image') }}" class="d-none" name="feature-image" accept="image/jpeg,image/png">
-                                <label for="feature-image-input" class="feature-image-label btn btn-outline-light @error('feature-image') is-invalid bg-danger @enderror">
+                                <input type="file" id="feature-image-input" class="d-none" name="featured-image" accept="image/jpeg,image/png">
+                                <label for="feature-image-input" class="feature-image-label btn btn-outline-secondary @error('feature-image') is-invalid bg-danger @enderror">
                                     <div id="feature-image-div" class="mb-3 bg-dark rounded overflow-hidden d-flex justify-content-center align-items-center">
-                                        <i class="bi bi-image text-secondary" style="transform: scale(4)"></i>
+                                        @isset($post->featured_image)
+                                            <img src="{{ asset('storage/'.$post->featured_image) }}" alt="{{ $post->featured_image }}">
+                                        @else
+                                            <i class="bi bi-image text-secondary" style="transform: scale(4)"></i>
+                                        @endisset
                                     </div>
                                     <i class="bi bi-laptop me-2"></i>
                                     <span class="fw-bold">Upload Image</span>
