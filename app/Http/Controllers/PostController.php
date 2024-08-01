@@ -14,7 +14,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest('id')->paginate(10);
+        $posts = Post::latest('id')->paginate(7);
         return view('post.index',compact('posts'));
     }
 
@@ -61,7 +61,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('post.edit');
+        return view('post.edit',compact('post'));
     }
 
     /**

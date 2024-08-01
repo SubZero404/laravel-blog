@@ -61,12 +61,12 @@
                             </td>
                             <td class="text-nowrap">
                                 {{--                                            to edit category--}}
-                                <a href="{{ route('category.edit',$post->id) }}" class="btn btn-dark custom-btn me-2 mb-2">
+                                <a href="{{ route('post.edit',$post) }}" class="btn btn-dark custom-btn me-2 mb-2">
                                     <i class="bi bi-pencil-fill"></i>
                                 </a>
 
                                 {{--                                            delete category form--}}
-                                <form action="{{ route('category.destroy',$post->id) }}" method="post" class="d-inline-block">
+                                <form action="{{ route('post.destroy',$post->id) }}" method="post" class="d-inline-block">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-dark custom-btn me-2 mb-2">
