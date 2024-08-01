@@ -44,7 +44,7 @@
             {{--            card header--}}
             <div class="card-header d-flex justify-content-between mx-2">
                 <div class="d-flex align-items-center">
-                    <i class="bi bi-plus-circle-fill fs-4"></i>
+                    <i class="bi bi-pencil-fill fs-4"></i>
                     <span class="fw-bolder ms-2">Edit Post</span>
                 </div>
                 <div class="d-flex align-items-center">

@@ -60,12 +60,17 @@
                                 <p>{{ \App\Models\User::get()->find($post->user_id)->name }}</p>
                             </td>
                             <td class="text-nowrap">
-                                {{--                                            to edit category--}}
+                                {{--                                            to edit post--}}
                                 <a href="{{ route('post.edit',$post) }}" class="btn btn-dark custom-btn me-2 mb-2">
-                                    <i class="bi bi-pencil-fill"></i>
+                                    <i class="bi bi-pencil-fill text-warning"></i>
                                 </a>
 
-                                {{--                                            delete category form--}}
+                                {{--                                to view post--}}
+                                <a href="{{ route('post.show',$post) }}" class="btn btn-dark custom-btn me-2 mb-2">
+                                    <i class="bi bi-layout-text-window-reverse text-success"></i>
+                                </a>
+
+                                {{--                                            delete post form--}}
                                 <form action="{{ route('post.destroy',$post->id) }}" method="post" class="d-inline-block">
                                     @csrf
                                     @method('DELETE')
