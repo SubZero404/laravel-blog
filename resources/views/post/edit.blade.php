@@ -22,7 +22,7 @@
             <div class="card-header d-flex justify-content-between mx-2">
                 <div class="d-flex align-items-center">
                     <i class="bi bi-collection-fill fs-4"></i>
-                    <span class="fw-bolder ms-2">Posts</span>
+                    <span class="fw-bolder ms-2">Edit Post</span>
                 </div>
                 <div class="d-flex align-items-center">
                     <button class="btn btn-dark custom-btn me-2" onclick="toggle_window(this)">

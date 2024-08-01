@@ -7,6 +7,10 @@ export default defineConfig({
             input: [
                 'resources/sass/app.scss',
                 'resources/js/app.js',
+                'vendor/jquery-3.6.0.js',
+                'vendor/summernote/summernote.min.css',
+                'vendor/summernote/summernote-lite.min.css',
+                'vendor/summernote/summernote-lite.js'
             ],
             refresh: true,
         }),

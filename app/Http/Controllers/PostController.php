@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -29,7 +30,21 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        //
+        $post = new Post();
+        $post->title = $request->title;
+        $post->slug = Str::slug($request->title);
+        $post->description = $request->description;
+        $post->excerpt = Str::words($request->description,100,"...");
+        $post->category_id = $request->category;
+        $post->user_id = \Auth::id();
+        if ($request->hasFile('feature-image')) {
+            $image_file = $request->file('feature-image');
+            $file_name = uniqid()."_feature_image".$image_file->extension();
+            $image_file->storeAs('public',$file_name);
+            $post->featured_image = $file_name;
+        }
+        $post->save();
+        return redirect()->route('post.index')->with('status','Successfully Created Post.');
     }
 
     /**

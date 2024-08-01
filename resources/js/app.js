@@ -2,6 +2,7 @@ import './bootstrap';
 
 import Swal from "sweetalert2";
 
+
 window.showToast = function (status) {
     const Toast = Swal.mixin({
         toast: true,
