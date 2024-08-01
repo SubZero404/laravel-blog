@@ -15,7 +15,7 @@
 
     {{--    card start--}}
     <div class="container-fluid p-0 overflow-scroll scrollbar window-session bg-black rounded">
-        <div class="card bg-black border-0 w-100">
+        <div class="card bg-black border-0">
             {{--            card header--}}
             <div class="card-header d-flex justify-content-between mx-2">
                 <div class="d-flex align-items-center">
@@ -34,7 +34,54 @@
             </div>
             {{--            card body--}}
             <div class="card-body">
+                <table class="table table-striped table-hover overflow-scroll">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>TITLE</th>
+                        <th>OWNER</th>
+                        <th class="text-nowrap">CREATED DATE</th>
+                        <th>CONTROL</th>
+                    </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                    @forelse($posts as $post)
+                        <tr class="category-tr" id="category-tr-{{ $post->id }}">
+                            <td>{{ $post->id }}</td>
+                            <td>
+                                <p class="my-0">{{ $post->title }}</p>
+                                <span class="text-danger small"> <i class="bi bi-collection-fill me-2"></i> {{ \App\Models\Category::get()->find($post->category_id)->title }}</span>
+                            </td>
+                            <td>
+                                <p class="my-0 text-nowrap"><i class="bi bi-calendar me-1"></i> {{ $post->created_at->format('d M Y') }}</p>
+                                <p class="my-0 text-nowrap"><i class="bi bi-clock me-1"></i> {{ $post->created_at->format('h : m A') }}</p>
+                            </td>
+                            <td>
+                                <p>{{ \App\Models\User::get()->find($post->user_id)->name }}</p>
+                            </td>
+                            <td class="text-nowrap">
+                                {{--                                            to edit category--}}
+                                <a href="{{ route('category.edit',$post->id) }}" class="btn btn-dark custom-btn me-2 mb-2">
+                                    <i class="bi bi-pencil-fill"></i>
+                                </a>
 
+                                {{--                                            delete category form--}}
+                                <form action="{{ route('category.destroy',$post->id) }}" method="post" class="d-inline-block">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-dark custom-btn me-2 mb-2">
+                                        <i class="text-danger bi bi-trash-fill"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    @empty
+                    @endforelse
+                    </tbody>
+                </table>
+                <div class="">
+                    {{ $posts->onEachSide(1)->links() }}
+                </div>
             </div>
         </div>
     </div>

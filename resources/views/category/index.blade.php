@@ -71,7 +71,7 @@
                                     <th>CATEGORY NAME</th>
                                     <th class="d-none d-lg-table-cell">CREATOR</th>
                                     <th>CREATED DATE</th>
-                                    <th>Control</th>
+                                    <th>CONTROL</th>
                                 </tr>
                                 </thead>
                                 <tbody class="table-group-divider">

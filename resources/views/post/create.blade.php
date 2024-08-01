@@ -48,9 +48,9 @@
                         <i class="bi bi-arrows-angle-expand"></i>
                         <i class="bi bi-arrows-angle-contract d-none"></i>
                     </button>
-                    <button class="btn btn-dark custom-btn" >
+                    <a href="{{ route('post.index') }}" class="btn btn-dark custom-btn" >
                         <i class="bi bi-list-ul"></i>
-                    </button>
+                    </a>
                 </div>
             </div>
             {{--            card body--}}
