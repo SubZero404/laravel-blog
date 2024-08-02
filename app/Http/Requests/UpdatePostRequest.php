@@ -24,6 +24,7 @@ class UpdatePostRequest extends FormRequest
         return [
             'title' => 'required|min:2',
             'description' => 'required|min:20',
+            'excerpt' => 'required|min:10',
             'category' => 'required|exists:categories,id',
             'featured-image' => 'nullable|mimes:jpeg,jpg,png|file|max:5120'
         ];

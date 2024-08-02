@@ -80,6 +80,13 @@
                                 @error('title') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
                             <div class="p-2 mb-3">
+                                <label for="excerpt" class="form-label ms-3 mb-3">EXCERPT</label>
+                                <textarea id="excerpt" name="excerpt" placeholder="Add the main topic of your post for user experience. Add minimum 10 words"
+                                          class="w-100 p-2 bg-dark rounded border-0 @error('excerpt') is-invalid @enderror"
+                                >{{ old('excerpt',$post->excerpt) }}</textarea>
+                                @error('excerpt') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                            </div>
+                            <div class="p-2 mb-3">
                                 <label for="description" class="form-label ms-3 mb-3">DESCRIPTION</label>
                                 <div class="bg-black rounded">
                                     <textarea id="description" name="description"
