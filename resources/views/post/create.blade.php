@@ -147,8 +147,15 @@
                                 </label>
                                 @error('feature-image') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
-                            <div class="p-2 mb-3">
-                                <button type="submit" class="btn btn-danger">POST</button>
+                            <div class="p-2 mb-3 d-flex flex-wrap">
+                                <button type="submit" class="btn btn-success me-2 mb-2">
+                                    <i class="bi bi-save-fill"></i>
+                                    UPDATE
+                                </button>
+                                <a href="{{ route('post.index') }}" class="btn btn-outline-danger">
+                                    <i class="bi bi-backspace-fill"></i>
+                                    CANCEL
+                                </a>
                             </div>
                         </div>
                     </div>

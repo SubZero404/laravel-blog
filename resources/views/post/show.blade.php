@@ -47,8 +47,11 @@
                             }
                         </script>
                     @endpush
-                    <a href="{{ route('post.index') }}" class="btn btn-dark custom-btn" >
+                    <a href="{{ route('post.index') }}" class="btn btn-dark custom-btn me-2" >
                         <i class="bi bi-list-ul"></i>
+                    </a>
+                    <a href="{{ route('post.edit',$post) }}" class="btn btn-dark custom-btn">
+                        <i class="bi bi-pencil-fill text-warning"></i>
                     </a>
                 </div>
             </div>
@@ -72,7 +75,7 @@
                             <div class="bg-dark p-3 rounded">{!! html_entity_decode($post->description) !!}</div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-12">
+                    <div class="col-lg-3 col-12 d-flex flex-wrap d-lg-block">
                         <div class="p-2 mb-3">
                             <h2 class="ms-3 fs-6">
                                 Owner :
@@ -106,6 +109,12 @@
                                     <i class="bi bi-image" style="transform: scale(4)"></i>
                                 @endisset
                             </div>
+                        </div>
+                        <div class="p-2 mb-3 ms-3">
+                            <a href="{{ route('post.index') }}" class="btn btn-outline-danger">
+                                <i class="bi bi-back"></i>
+                                BACK TO POSTS
+                            </a>
                         </div>
                     </div>
                 </div>

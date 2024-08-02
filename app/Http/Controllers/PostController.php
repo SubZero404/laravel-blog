@@ -99,7 +99,13 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        Storage::delete('public/'.$post->featured_image);
+        if (isset($post->featured_image)) {
+           $featured_image = 'public/'.$post->featured_image;
+            if (Storage::has($featured_image)) {
+                Storage::delete($featured_image);
+            }
+        }
+
         $post->delete();
         return redirect()->route('post.index')->with('status','Successfully Deleted Post!');
     }

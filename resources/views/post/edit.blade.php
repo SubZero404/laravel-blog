@@ -61,9 +61,16 @@
                             }
                         </script>
                     @endpush
-                    <a href="{{ route('post.index') }}" class="btn btn-dark custom-btn" >
+                    <a href="{{ route('post.index') }}" class="btn btn-dark custom-btn me-2" >
                         <i class="bi bi-list-ul"></i>
                     </a>
+                    <form action="{{ route('post.destroy',$post->id) }}" method="post" class="d-inline-block">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-dark custom-btn">
+                            <i class="text-danger bi bi-trash-fill"></i>
+                        </button>
+                    </form>
                 </div>
             </div>
             {{--            card body--}}
@@ -152,8 +159,15 @@
                                 </label>
                                 @error('feature-image') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
-                            <div class="p-2 mb-3">
-                                <button type="submit" class="btn btn-danger">POST</button>
+                            <div class="p-2 mb-3 d-flex flex-wrap">
+                                <button type="submit" class="btn btn-success me-2">
+                                    <i class="bi bi-save-fill"></i>
+                                    POST
+                                </button>
+                                <a href="{{ route('post.index') }}" class="btn btn-outline-danger">
+                                    <i class="bi bi-backspace-fill"></i>
+                                    CANCEL
+                                </a>
                             </div>
                         </div>
                     </div>
