@@ -22,7 +22,7 @@ class UpdatePostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|min:2',
+            'title' => 'required|min:2|unique:posts,title,'.$this->route('post')->id,
             'description' => 'required|min:20',
             'excerpt' => 'required|min:10',
             'category' => 'required|exists:categories,id',

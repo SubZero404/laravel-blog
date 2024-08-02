@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class PostController extends Controller
@@ -78,6 +79,10 @@ class PostController extends Controller
         $post->user_id = Auth::id();
 
         if ($request->hasFile('featured-image')) {
+//            delete old photo from stroage
+            Storage::delete("public/".$post->featured_image);
+
+//            add new photo
             $image_file = $request->file('featured-image');
             $image_name = uniqid()."featured_image".$image_file->extension();
             $image_file->storeAs('public',$image_name);
@@ -94,6 +99,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        Storage::delete('public/'.$post->featured_image);
         $post->delete();
         return redirect()->route('post.index')->with('status','Successfully Deleted Post!');
     }
