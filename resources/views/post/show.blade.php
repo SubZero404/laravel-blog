@@ -65,11 +65,11 @@
                         </div>
                         <div class="p-2 mb-3">
                             <h2 class="ms-3 fs-6 mb-3">EXCERPT</h2>
-                            <div class="bg-dark p-3 rounded">{{ $post->excerpt }}</div>
+                            <div class="bg-dark p-3 rounded">{!! html_entity_decode($post->excerpt) !!} </div>
                         </div>
                         <div class="p-2 mb-3">
                             <h2 class="ms-3 fs-6 mb-3">DESCRIPTION</h2>
-                            <div class="bg-dark p-3 rounded">{{ $post->description }}</div>
+                            <div class="bg-dark p-3 rounded">{!! html_entity_decode($post->description) !!}</div>
                         </div>
                     </div>
                     <div class="col-lg-3 col-12">

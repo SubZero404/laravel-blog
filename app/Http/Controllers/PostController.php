@@ -36,7 +36,7 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->slug = Str::slug($request->title);
         $post->description = $request->description;
-        $post->excerpt = Str::words($request->description,100,"...");
+        $post->excerpt = Str::words($request->description,10,"...");
         $post->category_id = $request->category;
         $post->user_id = Auth::id();
         if ($request->hasFile('feature-image')) {
