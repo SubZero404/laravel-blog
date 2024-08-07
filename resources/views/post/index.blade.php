@@ -22,11 +22,40 @@
                     <i class="bi bi-chat-quote-fill fs-4"></i>
                     <span class="fw-bolder ms-2">Posts</span>
                 </div>
+                <div class="search-form @if(!request('keyword')) d-none  @endif">
+                    <form action="{{ route('post.index') }}" method="get">
+                        <div class="input-group">
+                            <input type="text" value="{{ request('keyword') }}" name="keyword" id="keyword" class="form-control" placeholder="Search">
+                            <button class="btn btn-outline-secondary" type="submit">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
                 <div class="d-flex align-items-center">
+                    <button class="btn btn-dark custom-btn me-2" onclick="toggle_search()">
+                        <i class="bi bi-search"></i>
+                    </button>
+                    @push('script')
+                        <script>
+                            function toggle_search() {
+                                document.querySelector('.search-form').classList.toggle('d-none')
+                            }
+                        </script>
+                    @endpush
                     <button class="btn btn-dark custom-btn me-2" onclick="toggle_window(this)">
                         <i class="bi bi-arrows-angle-expand"></i>
                         <i class="bi bi-arrows-angle-contract d-none"></i>
                     </button>
+                    @push('script')
+                        <script>
+                            function toggle_window(e) {
+                                e.children[0].classList.toggle('d-none')
+                                e.children[1].classList.toggle('d-none')
+                                document.querySelector('.window-session').classList.toggle('window-expand')
+                            }
+                        </script>
+                    @endpush
                     <a href="{{ route('post.create') }}" class="btn btn-dark custom-btn">
                         <i class="bi bi-plus"></i>
                     </a>
@@ -34,6 +63,19 @@
             </div>
             {{--            card body--}}
             <div class="card-body">
+                @if(request('keyword'))
+                    <div class="m-2">
+                        <p>
+                            Search By
+                            <span class="text-secondary me-2">"{{ request('keyword') }}"</span>
+                            <small>
+                                <a href="{{ route('post.index') }}">
+                                    <i class="bi bi-trash-fill"></i>
+                                </a>
+                            </small>
+                        </p>
+                    </div>
+                @endif
                 <table class="table table-striped table-hover overflow-scroll">
                     <thead>
                     <tr>
@@ -92,14 +134,4 @@
     </div>
 
     {{--    card end--}}
-
-    @push('script')
-        <script>
-            function toggle_window(e) {
-                e.children[0].classList.toggle('d-none')
-                e.children[1].classList.toggle('d-none')
-                document.querySelector('.window-session').classList.toggle('window-expand')
-            }
-        </script>
-    @endpush
 @endsection

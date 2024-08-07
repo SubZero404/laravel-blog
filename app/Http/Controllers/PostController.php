@@ -16,7 +16,13 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest('id')->paginate(7);
+        $posts = Post::when(request('keyword'),function ($q) {
+            $keyword = request('keyword');
+            $q->orWhere('title','like',"%$keyword%")->orWhere('description','like',"%$keyword%");
+        })
+            ->latest('id')
+            ->paginate(7)
+            ->withQueryString();
         return view('post.index',compact('posts'));
     }
 
