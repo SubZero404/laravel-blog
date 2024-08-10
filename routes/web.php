@@ -11,11 +11,11 @@ Auth::routes();
 
 //Admin dashboard
 //Home
-Route::get('/home', [HomeController::class, 'index'])->middleware('testing-middleware')->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 //Post
-Route::resource('/post',PostController::class)->middleware('auth:web');
+Route::resource('/post',PostController::class);
 
 //Category
-Route::resource('/category', CategoryController::class)->middleware('auth:web');
+Route::resource('/category', CategoryController::class);
 

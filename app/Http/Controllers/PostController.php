@@ -16,7 +16,6 @@ class PostController extends Controller
      */
     public function index()
     {
-//        if (!auth()->check()) abort(403);
         $posts = Post::when(request('keyword'),function ($q) {
             $keyword = request('keyword');
             $q->orWhere('title','like',"%$keyword%")->orWhere('description','like',"%$keyword%");
