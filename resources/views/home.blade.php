@@ -11,6 +11,5 @@
 
     <div class="container-fluid">
         <h1 class="text-danger text-center">Home</h1>
-        <p>{{ Auth::user() }}</p>
     </div>
 @endsection

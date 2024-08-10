@@ -15,11 +15,7 @@ class TestingMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-//        logger('Hello this is Testing-Middleware : '.$request->url());
-        $accepted_user = [1,11];
-        if (!array_filter(\Auth::id(),$accepted_user)) {
-            abort(403);
-        }
+        logger('Hello this is Testing-Middleware : '.$request->url());
         return $next($request);
     }
 }
