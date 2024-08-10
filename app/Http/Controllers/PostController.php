@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -77,6 +78,10 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
+        if (Gate::denies('update',$post)) {
+            return abort(403);
+        }
+
         $post->title = $request->title;
         $post->slug = Str::slug($request->title);
         $post->description = $request->description;
@@ -85,7 +90,7 @@ class PostController extends Controller
         $post->user_id = Auth::id();
 
         if ($request->hasFile('featured-image')) {
-//            delete old photo from stroage
+//            delete old photo from storage
             Storage::delete("public/".$post->featured_image);
 
 //            add new photo
@@ -105,6 +110,9 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        if (Gate::denies('delete',$post)) {
+            return abort(403);
+        }
         if (isset($post->featured_image)) {
            $featured_image = 'public/'.$post->featured_image;
             if (Storage::has($featured_image)) {

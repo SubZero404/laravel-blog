@@ -102,24 +102,28 @@
                                 <p>{{ \App\Models\User::get()->find($post->user_id)->name }}</p>
                             </td>
                             <td class="text-nowrap">
-                                {{--                                            to edit post--}}
-                                <a href="{{ route('post.edit',$post) }}" class="btn btn-dark custom-btn me-2 mb-2">
-                                    <i class="bi bi-pencil-fill text-warning"></i>
-                                </a>
-
                                 {{--                                to view post--}}
                                 <a href="{{ route('post.show',$post) }}" class="btn btn-dark custom-btn me-2 mb-2">
                                     <i class="bi bi-layout-text-window-reverse text-success"></i>
                                 </a>
 
-                                {{--                                            delete post form--}}
-                                <form action="{{ route('post.destroy',$post->id) }}" method="post" class="d-inline-block">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-dark custom-btn me-2 mb-2">
-                                        <i class="text-danger bi bi-trash-fill"></i>
-                                    </button>
-                                </form>
+                                @can('update',$post)
+                                    {{--                                            to edit post--}}
+                                    <a href="{{ route('post.edit',$post) }}" class="btn btn-dark custom-btn me-2 mb-2">
+                                        <i class="bi bi-pencil-fill text-warning"></i>
+                                    </a>
+                                @endcan
+
+                                @can('delete',$post)
+                                    {{--                                            delete post form--}}
+                                    <form action="{{ route('post.destroy',$post->id) }}" method="post" class="d-inline-block">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-dark custom-btn me-2 mb-2">
+                                            <i class="text-danger bi bi-trash-fill"></i>
+                                        </button>
+                                    </form>
+                                @endcan
                             </td>
                         </tr>
                     @empty
