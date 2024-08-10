@@ -58,7 +58,7 @@
         </li>
 
         <li class="nav-item fs-6 px-2 py-3">
-            <a href="#" class="nav-link p-0 text-decoration-none text-white text-start">
+            <a href="{{ route('user.index') }}" class="nav-link p-0 text-decoration-none text-white text-start">
                 <i class="me-2 bi bi-people-fill"></i> User Lists
             </a>
         </li>

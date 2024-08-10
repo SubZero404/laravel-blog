@@ -95,11 +95,11 @@
                                 <span class="text-danger small"> <i class="bi bi-collection-fill me-2"></i> {{ \App\Models\Category::get()->find($post->category_id)->title }}</span>
                             </td>
                             <td>
-                                <p class="my-0 text-nowrap"><i class="bi bi-calendar me-1"></i> {{ $post->created_at->format('d M Y') }}</p>
-                                <p class="my-0 text-nowrap"><i class="bi bi-clock me-1"></i> {{ $post->created_at->format('h : m A') }}</p>
+                                <p>{{ \App\Models\User::get()->find($post->user_id)->name }}</p>
                             </td>
                             <td>
-                                <p>{{ \App\Models\User::get()->find($post->user_id)->name }}</p>
+                                <p class="my-0 text-nowrap"><i class="bi bi-calendar me-1"></i> {{ $post->created_at->format('d M Y') }}</p>
+                                <p class="my-0 text-nowrap"><i class="bi bi-clock me-1"></i> {{ $post->created_at->format('h : m A') }}</p>
                             </td>
                             <td class="text-nowrap">
                                 {{--                                to view post--}}
