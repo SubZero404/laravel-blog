@@ -10,12 +10,15 @@ Route::get('/', function () { return view('welcome'); });
 Auth::routes();
 
 //Admin dashboard
-//Home
-Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-//Post
-Route::resource('/post',PostController::class);
+Route::middleware('auth:web')->group(function (){
+    //Home
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-//Category
-Route::resource('/category', CategoryController::class);
+    //Post
+    Route::resource('/post',PostController::class);
+
+    //Category
+    Route::resource('/category', CategoryController::class);
+});
 
