@@ -79,6 +79,7 @@
                         <th>ID</th>
                         <th>NAME</th>
                         <th>EMAIL</th>
+                        <th>ROLE</th>
                         <th class="text-nowrap">CREATED DATE</th>
                         <th>CONTROL</th>
                     </tr>
@@ -94,21 +95,21 @@
                                 <p>{{ $user->email }}</p>
                             </td>
                             <td>
+                                <p>{{ $user->role }}</p>
+                            </td>
+                            <td>
                                 <p class="my-0 text-nowrap"><i class="bi bi-calendar me-1"></i> {{ $user->created_at->format('d M Y') }}</p>
                                 <p class="my-0 text-nowrap"><i class="bi bi-clock me-1"></i> {{ $user->created_at->format('h : m A') }}</p>
                             </td>
                             <td class="text-nowrap">
-
-                                @can('delete',$user)
-                                    {{--                                            delete post form--}}
-                                    <form action="{{ route('user.destroy',$user->id) }}" method="post" class="d-inline-block">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-dark custom-btn me-2 mb-2">
-                                            <i class="text-danger bi bi-trash-fill"></i>
-                                        </button>
-                                    </form>
-                                @endcan
+                                {{--                                            delete post form--}}
+                                <form action="{{ route('user.destroy',$user->id) }}" method="post" class="d-inline-block">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-dark custom-btn me-2 mb-2">
+                                        <i class="text-danger bi bi-trash-fill"></i>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     @empty
