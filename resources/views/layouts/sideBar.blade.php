@@ -46,11 +46,13 @@
                 <i class="me-2 bi bi-plus-circle-fill"></i> Create
             </a>
         </li>
-        <li class="nav-item fs-6 px-2 py-3">
-            <a href="{{ route('category.index') }}" class="nav-link p-0 text-decoration-none text-white text-start">
-                <i class="me-2 bi bi-collection-fill"></i> Category
-            </a>
-        </li>
+        @manageLvl
+            <li class="nav-item fs-6 px-2 py-3">
+                <a href="{{ route('category.index') }}" class="nav-link p-0 text-decoration-none text-white text-start">
+                    <i class="me-2 bi bi-collection-fill"></i> Category
+                </a>
+            </li>
+        @endmanageLvl
 
 
         <li class="text-white-50 fw-bold mb-2 mt-4">
