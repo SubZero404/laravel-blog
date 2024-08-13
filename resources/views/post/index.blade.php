@@ -81,40 +81,42 @@
                     <tr>
                         <th>ID</th>
                         <th>TITLE</th>
-                        <th>OWNER</th>
+                        @manageLvl
+                            <th>OWNER</th>
+                        @endmanageLvl
                         <th class="text-nowrap">CREATED DATE</th>
                         <th>CONTROL</th>
                     </tr>
                     </thead>
                     <tbody class="table-group-divider">
                     @forelse($posts as $post)
-                        <tr class="category-tr" id="category-tr-{{ $post->id }}">
-                            <td>{{ $post->id }}</td>
-                            <td>
-                                <p class="my-0">{{ $post->title }}</p>
-                                <span class="text-danger small"> <i class="bi bi-collection-fill me-2"></i> {{ \App\Models\Category::get()->find($post->category_id)->title }}</span>
-                            </td>
-                            <td>
-                                <p>{{ \App\Models\User::get()->find($post->user_id)->name }}</p>
-                            </td>
-                            <td>
-                                <p class="my-0 text-nowrap"><i class="bi bi-calendar me-1"></i> {{ $post->created_at->format('d M Y') }}</p>
-                                <p class="my-0 text-nowrap"><i class="bi bi-clock me-1"></i> {{ $post->created_at->format('h : m A') }}</p>
-                            </td>
-                            <td class="text-nowrap">
-                                {{--                                to view post--}}
-                                <a href="{{ route('post.show',$post) }}" class="btn btn-dark custom-btn me-2 mb-2">
-                                    <i class="bi bi-layout-text-window-reverse text-success"></i>
-                                </a>
+                        @can('view',$post)
+                            <tr class="category-tr" id="category-tr-{{ $post->id }}">
+                                <td>{{ $post->id }}</td>
+                                <td>
+                                    <p class="my-0">{{ $post->title }}</p>
+                                    <span class="text-danger small"> <i class="bi bi-collection-fill me-2"></i> {{ \App\Models\Category::get()->find($post->category_id)->title }}</span>
+                                </td>
+                                @manageLvl
+                                    <td>
+                                        <p>{{ \App\Models\User::get()->find($post->user_id)->name }}</p>
+                                    </td>
+                                @endmanageLvl
+                                <td>
+                                    <p class="my-0 text-nowrap"><i class="bi bi-calendar me-1"></i> {{ $post->created_at->format('d M Y') }}</p>
+                                    <p class="my-0 text-nowrap"><i class="bi bi-clock me-1"></i> {{ $post->created_at->format('h : m A') }}</p>
+                                </td>
+                                <td class="text-nowrap">
+                                    {{--                                to view post--}}
+                                    <a href="{{ route('post.show',$post) }}" class="btn btn-dark custom-btn me-2 mb-2">
+                                        <i class="bi bi-layout-text-window-reverse text-success"></i>
+                                    </a>
 
-                                @can('update',$post)
                                     {{--                                            to edit post--}}
                                     <a href="{{ route('post.edit',$post) }}" class="btn btn-dark custom-btn me-2 mb-2">
                                         <i class="bi bi-pencil-fill text-warning"></i>
                                     </a>
-                                @endcan
 
-                                @can('delete',$post)
                                     {{--                                            delete post form--}}
                                     <form action="{{ route('post.destroy',$post->id) }}" method="post" class="d-inline-block">
                                         @csrf
@@ -123,10 +125,18 @@
                                             <i class="text-danger bi bi-trash-fill"></i>
                                         </button>
                                     </form>
-                                @endcan
+
+                                </td>
+                            </tr>
+                        @endcan
+                    @empty
+                        <tr>
+                            <td colspan="@if(Auth::user()->isAuthor()) 5 @else 6 @endif">
+                                <div class="d-flex justify-content-center align-items-center" style="height: 50vh">
+                                    <h2>Found Nothing</h2>
+                                </div>
                             </td>
                         </tr>
-                    @empty
                     @endforelse
                     </tbody>
                 </table>
