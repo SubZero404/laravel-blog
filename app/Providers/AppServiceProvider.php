@@ -34,5 +34,9 @@ class AppServiceProvider extends ServiceProvider
         Blade::if('manageLvl',function (){
             return !Auth::user()->isAuthor();
         });
+
+        Blade::if('adminLvl',function (){
+            return Auth::user()->isAdmin();
+        });
     }
 }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
@@ -68,6 +70,18 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        if (Gate::authorize('delete',$user)) {
+            if ($user->isAdmin()) {
+                if (Auth::id() === $user->id){
+                    return redirect()->route('user.index')->with('warning',"admin account can't be delete.");
+                } else {
+                    $user->delete();
+                    return redirect()->route('user.index')->with('status','Successfully deleted User : '.$user->name);
+                }
+            } else {
+                $user->delete();
+                return redirect()->route('welcome');
+            }
+        }
     }
 }

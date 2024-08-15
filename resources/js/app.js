@@ -3,7 +3,7 @@ import './bootstrap';
 import Swal from "sweetalert2";
 
 
-window.showToast = function (status) {
+window.showToast = function (status,status_icon = 'success') {
     const Toast = Swal.mixin({
         toast: true,
         position: 'bottom',
@@ -17,7 +17,7 @@ window.showToast = function (status) {
     })
 
     Toast.fire({
-        icon: 'success',
+        icon: status_icon,
         title: status
     })
 }

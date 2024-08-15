@@ -52,6 +52,10 @@
         @if( session('status') )
         showToast("{{ session('status') }}")
         @endif
+
+        @if( session('warning') )
+        showToast("{{ session('warning') }}",'warning')
+        @endif
     </script>
 
 </body>

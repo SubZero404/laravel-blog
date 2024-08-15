@@ -79,9 +79,14 @@
                         <th>ID</th>
                         <th>NAME</th>
                         <th>EMAIL</th>
+                        @manageLvl
                         <th>ROLE</th>
                         <th class="text-nowrap">CREATED DATE</th>
+                        @endmanageLvl
+                        @adminLvl
                         <th>CONTROL</th>
+                        @endadminLvl
+
                     </tr>
                     </thead>
                     <tbody class="table-group-divider">
@@ -94,6 +99,7 @@
                             <td>
                                 <p>{{ $user->email }}</p>
                             </td>
+                            @manageLvl
                             <td>
                                 <p>{{ $user->role }}</p>
                             </td>
@@ -101,6 +107,8 @@
                                 <p class="my-0 text-nowrap"><i class="bi bi-calendar me-1"></i> {{ $user->created_at->format('d M Y') }}</p>
                                 <p class="my-0 text-nowrap"><i class="bi bi-clock me-1"></i> {{ $user->created_at->format('h : m A') }}</p>
                             </td>
+                            @endmanageLvl
+                            @adminLvl
                             <td class="text-nowrap">
                                 {{--                                            delete post form--}}
                                 <form action="{{ route('user.destroy',$user->id) }}" method="post" class="d-inline-block">
@@ -111,8 +119,16 @@
                                     </button>
                                 </form>
                             </td>
+                            @endadminLvl
                         </tr>
                     @empty
+                        <tr>
+                            <td colspan="@if(Auth::user()->isAuthor()) 5 @else 6 @endif">
+                                <div class="d-flex justify-content-center align-items-center" style="height: 50vh">
+                                    <h2>Found Nothing</h2>
+                                </div>
+                            </td>
+                        </tr>
                     @endforelse
                     </tbody>
                 </table>
