@@ -95,11 +95,11 @@
                                 <td>{{ $post->id }}</td>
                                 <td>
                                     <p class="my-0">{{ $post->title }}</p>
-                                    <span class="text-danger small"> <i class="bi bi-collection-fill me-2"></i> {{ \App\Models\Category::get()->find($post->category_id)->title }}</span>
+                                    <span class="text-danger small"> <i class="bi bi-collection-fill me-2"></i> {{ $post->category->title ?? 'uncategorized' }}</span>
                                 </td>
                                 @manageLvl
                                     <td>
-                                        <p>{{ \App\Models\User::get()->find($post->user_id)->name }}</p>
+                                        <p>{{ $post->user->name }}</p>
                                     </td>
                                 @endmanageLvl
                                 <td>

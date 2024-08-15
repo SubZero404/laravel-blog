@@ -79,13 +79,13 @@
                         <div class="p-2 mb-3">
                             <h2 class="ms-3 fs-6">
                                 Owner :
-                                <span class="text-danger">{{ \App\Models\User::get()->find($post->user_id)->name }}</span>
+                                <span class="text-danger">{{ $post->user->name }}</span>
                             </h2>
                         </div>
                         <div class="p-2 mb-3">
                             <h2 class="ms-3 fs-6">
                                 Category :
-                                <span class="text-danger">{{ \App\Models\Category::get()->find($post->category_id)->title }}</span>
+                                <span class="text-danger">{{ $post->category->title ?? 'uncategorized' }}</span>
                             </h2>
                         </div>
                         <div class="p-2 mb-3 d-flex flex-row">

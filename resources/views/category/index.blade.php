@@ -83,7 +83,7 @@
                                             <span class="badge bg-dark">{{ $category->slug }}</span>
                                         </th>
                                         <th class="d-none d-lg-table-cell">
-                                            <p class="fw-lighter">{{ \App\Models\User::find($category->user_id)->name }}</p>
+                                            <p class="fw-lighter">{{ $category->user->name }}</p>
                                         </th>
                                         <th>
                                             <p class="my-0"><i class="bi bi-calendar me-1"></i> {{ $category->created_at->format('d M Y') }}</p>
