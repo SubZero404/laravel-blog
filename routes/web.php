@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
@@ -24,5 +25,9 @@ Route::middleware('auth:web')->group(function (){
 
     //User
     Route::resource('/user', UserController::class);
+
+    //Nation
+    Route::resource('/nation', NationController::class);
+
 });
 
