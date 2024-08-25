@@ -66,6 +66,45 @@
                                 <small class="text-secondary">slug : {{ $post->slug }}</small>
                             </div>
                         </div>
+                        <div class="p-2 mb-3 post-photo-show-div d-flex flex-column align-items-center">
+                            <h2 class="ms-3 fs-6 mb-3 col-12">POST PHOTOS</h2>
+                            <div id="carouselExampleIndicators" class="carousel slide col-12 col-md-10 col-lg-8">
+                                <div class="carousel-indicators position-absolute" style="top: 90% !important; height: 20px;">
+                                    @for($count = 0; $count < $post->photos->count(); $count++)
+                                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $count }}" aria-label="Slide {{ $count }}"></button>
+                                    @endfor
+                                </div>
+                                <div class="carousel-inner">
+                                    @foreach($post->photos as $photo)
+                                        <div class="carousel-item position-relative">
+                                            <img src="{{ asset('storage/'.$photo->name) }}" alt="{{ $photo->name }}">
+                                        </div>
+                                    @endforeach
+                                </div>
+                                @push('script')
+                                    <script>
+                                        let carousel_inner = document.querySelector('.carousel-inner');
+                                        let carousel_indicators = document.querySelector('.carousel-indicators');
+
+                                        // add class->active to the first image
+                                        carousel_inner.firstElementChild.classList.add('active');
+
+                                        // add class="active" aria-current="true" to the first carousel indicator
+                                        first_carousel_indicator_btn = carousel_indicators.firstElementChild;
+                                        first_carousel_indicator_btn.classList.add('active');
+                                        first_carousel_indicator_btn.setAttribute('aria-current','true')
+                                    </script>
+                                @endpush
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                    <span class="bi bi-chevron-left" aria-hidden="true" style="transform: scale(3)"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                    <span class="bi bi-chevron-right" aria-hidden="true" style="transform: scale(3)"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
                         <div class="p-2 mb-3">
                             <h2 class="ms-3 fs-6 mb-3">EXCERPT</h2>
                             <div class="bg-dark p-3 rounded">{!! html_entity_decode($post->excerpt) !!} </div>

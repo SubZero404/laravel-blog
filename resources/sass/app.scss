@@ -136,3 +136,19 @@ body {
         }
     }
 }
+
+//for show post blade
+.post-photo-show-div {
+    .carousel-inner {
+        height: 30vh !important;
+    }
+    .carousel-item {
+        height: 30vh !important;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+        }
+    }
+}
