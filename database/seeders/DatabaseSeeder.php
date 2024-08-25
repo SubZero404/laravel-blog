@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Nation;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,5 +20,9 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             PostSeeder::class
         ]);
+
+        $photos = Storage::allFiles('public');
+        array_shift($photos);
+        Storage::delete($photos);
     }
 }

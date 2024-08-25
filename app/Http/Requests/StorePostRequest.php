@@ -25,6 +25,7 @@ class StorePostRequest extends FormRequest
             "title" => "required|min:2|unique:posts",
             "description" => "required|min:20",
             "excerpt" => "required|min:10",
+            "photos.*" => "nullable|mimes:jpeg,png,jpg|file|max:5120",
             "category" => "required|exists:categories,id",
             "feature-image" => "nullable|mimes:jpeg,png,jpg|file|max:5120"
         ];

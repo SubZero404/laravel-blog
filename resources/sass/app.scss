@@ -1,5 +1,5 @@
 // Fonts
-@import url('https://fonts.bunny.net/css?family=Nunito');
+//@import url('https://fonts.bunny.net/css?family=Nunito');
 
 // Variables
 @import 'variables';
@@ -23,11 +23,13 @@ body {
 .custom-btn {
     background-color: #FFFFFF20;
     border: 0;
+    transition: all 200ms ease-in;
 }
 
 .custom-btn:hover {
     background-color: #FFFFFF00;
-    transform: scale(1.3);
+    transform: scale(1.2);
+    transition: all 100ms ease-in;
 }
 
 .window-expand {
@@ -39,6 +41,9 @@ body {
     z-index: 10000;
 }
 
+//STYLE FOR POST CREATE AND EDIT
+
+// for show feature image
 #feature-image-div {
     width: 150px;
     height: 150px;
@@ -47,5 +52,87 @@ body {
         height: 100%;
         object-position: center;
         object-fit: cover;
+    }
+}
+
+// for post description
+.note-toolbar {
+    background: #1E1E1EFF;
+}
+
+.note-editable {
+    min-height: 200px;
+    background: #1E1E1EFF;
+    color: white;
+}
+
+.window-expand .note-editable {
+    min-height: 400px;
+}
+
+// for input file label icon size
+.input-icon-label i:before{
+    transform: scale(1.75);
+}
+
+// for post photo display
+.photo-display-div {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #FFFFFF15;
+    backdrop-filter: blur(5px);
+    z-index: 10000;
+    .carousel-inner {
+        height: 75vh !important;
+    }
+    .carousel-item {
+        height: 75vh !important;
+        div {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 5px 0;
+            span {
+                transform: scale(.8);
+            }
+        }
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+        }
+    }
+    .delete-old-photo-div {
+        height: 75vh !important;
+        .delete-photo-div {
+            height: 150px;
+            width: 150px;
+            position: relative;
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+                transition: all .25s ease-in;
+            }
+            div {
+                position: absolute;
+                top: 0;
+                right: 0;
+                transform: scale(1.2);
+                input {
+                    cursor: pointer;
+                }
+            }
+            &:hover {
+                img {
+                    transform: scale(1.1);
+                }
+            }
+        }
     }
 }
