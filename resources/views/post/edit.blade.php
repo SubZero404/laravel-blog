@@ -215,13 +215,15 @@
                                     let to_display_photo_btn = document.querySelector('.to-display-photo-btn');
                                     let checkboxs = document.querySelectorAll('input[type="checkbox"]')
 
-                                    // add class->active to the first image
-                                    carousel_inner.firstElementChild.classList.add('active');
+                                    if (carousel_inner.children.length > 0) {
+                                        // add class->active to the first image
+                                        carousel_inner.firstElementChild.classList.add('active');
 
-                                    // add class="active" aria-current="true" to the first carousel indicator
-                                    first_carousel_indicator_btn = carousel_indicators.firstElementChild;
-                                    first_carousel_indicator_btn.classList.add('active');
-                                    first_carousel_indicator_btn.setAttribute('aria-current','true')
+                                        // add class="active" aria-current="true" to the first carousel indicator
+                                        first_carousel_indicator_btn = carousel_indicators.firstElementChild;
+                                        first_carousel_indicator_btn.classList.add('active');
+                                        first_carousel_indicator_btn.setAttribute('aria-current','true')
+                                    }
 
                                     function togglePhotoDisplayDiv() {
                                         let photo_display_div = document.querySelector('.photo-display-div');
