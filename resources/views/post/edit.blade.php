@@ -119,7 +119,7 @@
                                 <div class="d-flex flex-row justify-content-start mt-1">
 {{--                                    to upload new photo--}}
                                     <input type="file" id="photos-input" class="d-none" name="photos[]" accept="image/jpeg,image/png" multiple>
-                                    <label for="photos-input" class="input-icon-label me-2 btn btn-outline-light btn-sm @error('photos.*') is-invalid bg-danger @enderror">
+                                    <label for="photos-input" class="photo-label input-icon-label me-2 btn btn-outline-light btn-sm @error('photos.*') is-invalid bg-danger @enderror">
                                         <i class="bi bi-images me-2"></i>
                                         <span class="fw-bold">Upload Photos</span>
                                     </label>
@@ -208,6 +208,7 @@
                                     let carousel_inner = document.querySelector('.carousel-inner');
                                     let photo_display_div = document.querySelector('.photo-display-div');
                                     let photo_input = document.getElementById('photos-input');
+                                    let photo_label = document.querySelector('.photo-label')
                                     let photos_count_badge = document.querySelector('.photos-count-badge');
                                     let delete_old_photo_div = document.querySelector('.delete-old-photo-div');
                                     let carousel_div = document.querySelector('.carousel');
@@ -226,27 +227,28 @@
                                     }
 
                                     function togglePhotoDisplayDiv() {
-                                        let photo_display_div = document.querySelector('.photo-display-div');
                                         photo_display_div.classList.toggle('d-none');
                                         photo_display_div.classList.toggle('d-flex');
+
                                     }
 
                                     //load image from and display in photo display div
                                     photo_input.addEventListener('change', function (){
+                                        let photos_count_badge = document.querySelector('.photos-count-badge');
                                         let count = parseInt(photos_count_badge.textContent);
 
                                         let new_carousel_indicator = document.querySelectorAll('.new-carousel-indicator');
-                                        let new_carousel_item = document.querySelectorAll('.new-carousel-item');
-
                                         new_carousel_indicator.forEach(element => {
                                             element.remove();
                                             count = count - 1;
                                         })
+                                        let new_carousel_item = document.querySelectorAll('.new-carousel-item');
                                         new_carousel_item.forEach(element => {
                                             element.remove();
                                         })
 
                                         let photos = this.files;
+
                                         photos_count_badge.textContent = parseInt(photos.length) + count;
                                         for (const photo of photos) {
                                             const reader = new FileReader();
@@ -258,6 +260,36 @@
                                         }
                                         togglePhotoDisplayDiv();
                                     })
+
+                                    photo_label.addEventListener('click', CarouselIndicatorActive)
+
+                                    function CarouselIndicatorActive() {
+                                        let count = parseInt(document.querySelector('.photos-count-badge').textContent);
+                                        let new_carousel_indicator = document.querySelectorAll('.new-carousel-indicator');
+                                        let carousel_control_next_btn = document.querySelector('.carousel-control-next');
+                                        let foundActive = false;
+
+                                        new_carousel_indicator.forEach(element => {
+                                            if (element.classList.contains('active') && !foundActive) {
+                                                let aria_label = element.getAttribute('aria-label');
+                                                let indicator_number = parseInt(aria_label.split(' ')[1]);
+                                                let different = count - indicator_number;
+
+                                                console.log('different ' + different);
+
+                                                if (different > 0) {
+                                                    for (let i = 0; i < different; i++) {
+                                                        setTimeout(function() {
+                                                            console.log('click : ' + i);
+                                                            carousel_control_next_btn.click();
+                                                        }, i * 1000); // Delay each click by 500ms
+                                                    }
+                                                }
+
+                                                foundActive = true;
+                                            }
+                                        });
+                                    }
 
                                     function addCarouselIndicator(count) {
 
