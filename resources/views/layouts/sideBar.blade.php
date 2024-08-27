@@ -53,6 +53,11 @@
                 </a>
             </li>
         @endmanageLvl
+        <li class="nav-item fs-6 px-2 py-3">
+            <a href="{{ route('photo.index') }}" class="nav-link p-0 text-decoration-none text-white text-start">
+                <i class="me-2 bi bi-images"></i> Gallery
+            </a>
+        </li>
 
 
         <li class="text-white-50 fw-bold mb-2 mt-4">

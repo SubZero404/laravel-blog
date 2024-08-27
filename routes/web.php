@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NationController;
+use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
@@ -28,6 +29,9 @@ Route::middleware('auth:web')->group(function (){
 
     //Nation
     Route::resource('/nation', NationController::class);
+
+    //photos
+    Route::resource('/photo', PhotoController::class);
 
 });
 

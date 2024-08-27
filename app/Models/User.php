@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+     use HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -44,6 +44,11 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function photos()
+    {
+        return $this->hasManyThrough(Photo::class,Post::class);
     }
 
     public function getUserRole()
