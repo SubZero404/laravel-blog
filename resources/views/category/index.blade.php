@@ -70,6 +70,7 @@
                                     <th>ID</th>
                                     <th>CATEGORY NAME</th>
                                     <th class="d-none d-lg-table-cell">CREATOR</th>
+                                    <th>POST COUNT</th>
                                     <th>CREATED DATE</th>
                                     <th>CONTROL</th>
                                 </tr>
@@ -84,6 +85,9 @@
                                         </th>
                                         <th class="d-none d-lg-table-cell">
                                             <p class="fw-lighter">{{ $category->user->name }}</p>
+                                        </th>
+                                        <th>
+                                             <p class="my-0">{{ $category->posts()->count() }}</p>
                                         </th>
                                         <th>
                                             <p class="my-0"><i class="bi bi-calendar me-1"></i> {{ $category->created_at->format('d M Y') }}</p>

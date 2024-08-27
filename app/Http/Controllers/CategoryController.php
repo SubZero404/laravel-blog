@@ -19,7 +19,7 @@ class CategoryController extends Controller
         if (Gate::denies('view',$category)) {
             return abort(403);
         }
-        $categories = Category::latest("id")->get();
+        $categories = Category::latest("id")->with(['user'])->get();
         return view('category.index',compact('categories'));
     }
 
