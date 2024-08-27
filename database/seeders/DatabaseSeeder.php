@@ -24,5 +24,7 @@ class DatabaseSeeder extends Seeder
         $photos = Storage::allFiles('public');
         array_shift($photos);
         Storage::delete($photos);
+
+        echo "\033[34m Storage Cleaned \n";
     }
 }

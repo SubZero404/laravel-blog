@@ -115,7 +115,6 @@ class PostController extends Controller
         $post->description = $request->description;
         $post->excerpt = $request->excerpt;
         $post->category_id = $request->category;
-        $post->user_id = Auth::id();
 
         if ($request->hasFile('featured-image')) {
 //            delete old photo from storage

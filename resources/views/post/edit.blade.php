@@ -270,17 +270,17 @@
                                         let foundActive = false;
 
                                         new_carousel_indicator.forEach(element => {
+                                            let aria_label = element.getAttribute('aria-label');
+                                            let indicator_number = parseInt(aria_label.split(' ')[1]);
+                                            if(indicator_number === 0) {
+                                                foundActive = true;
+                                            }
                                             if (element.classList.contains('active') && !foundActive) {
-                                                let aria_label = element.getAttribute('aria-label');
-                                                let indicator_number = parseInt(aria_label.split(' ')[1]);
                                                 let different = count - indicator_number;
-
-                                                console.log('different ' + different);
 
                                                 if (different > 0) {
                                                     for (let i = 0; i < different; i++) {
                                                         setTimeout(function() {
-                                                            console.log('click : ' + i);
                                                             carousel_control_next_btn.click();
                                                         }, i * 1000); // Delay each click by 500ms
                                                     }
