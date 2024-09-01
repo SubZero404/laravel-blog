@@ -1,0 +1,26 @@
+// bootstrap
+@import "bootstrap";
+
+// bootstrap-icon
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
+// animate
+@import "node_modules/animate.css/animate.min.css";
+
+body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.filter-div {
+    .user-filter-div,
+    .category-filter-div{
+        height: 20vh;
+        overflow-y: scroll;
+        scroll-snap-type: y mandatory;
+        div {
+            scroll-snap-align: center;
+        }
+    }
+}
+

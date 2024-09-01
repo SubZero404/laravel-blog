@@ -1,5 +1,7 @@
 import './bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../../vendor/jquery-3.6.0';
+import '../../vendor/summernote/summernote-lite'
 
 
 import Swal from "sweetalert2";

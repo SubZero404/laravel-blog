@@ -5,10 +5,15 @@
 @import 'variables';
 
 // Bootstrap
-@import 'bootstrap/scss/bootstrap';
+@import 'bootstrap';
 
 // icons
 @import 'bootstrap-icons/font/bootstrap-icons.css';
+
+// summer note
+@import "vendor/summernote/summernote.min.css";
+@import "vendor/summernote/summernote-lite.min.css";
+
 
 body {
     padding: 0;
