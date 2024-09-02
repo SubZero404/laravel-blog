@@ -13,7 +13,12 @@ use Illuminate\Support\Facades\Route;
 
 // Blog Page (user)
 Route::get('/',[PageController::class,'index'])->name('page.index');
-Route::get('/post/{slug}',[PageController::class])->name('page.show');
+
+Route::get('/post/{slug}',[PageController::class,'show'])->name('page.show');
+
+Route::get('/category/{slug}',[PageController::class,'byCategory'])->name('page.by-category');
+
+Route::get('/user/{id}',[PageController::class,'byUser'])->name('page.by-user');
 
 Auth::routes();
 

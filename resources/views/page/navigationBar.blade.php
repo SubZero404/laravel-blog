@@ -16,7 +16,7 @@
         </a>
         <div class="navbar-nav">
             @auth
-                <div class="d-flex flex-column justify-content-start align-items-center">
+                <div class="d-flex flex-column justify-content-start align-items-center pt-2">
                     <p class="me-2 fw-bold" style="cursor: pointer" onclick="toggleLogout()">Kyal Sin Tun <i class="bi bi-caret-down-fill"></i></p>
                     <a class="nav-item d-none logout-link text-light me-2 text-decoration-none animate__animated animate__fadeOutUp"
                        href="{{ route('logout') }}"

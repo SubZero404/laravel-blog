@@ -20,8 +20,6 @@
     <div class="container">
         @include('page.navigationBar')
         <hr>
-        @include('page.postFilter')
-
         @yield('content')
     </div>
 </main>

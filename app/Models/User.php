@@ -51,6 +51,11 @@ class User extends Authenticatable
         return $this->hasManyThrough(Photo::class,Post::class);
     }
 
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
     public function getUserRole()
     {
         return Auth::user()->role;

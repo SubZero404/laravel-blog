@@ -6,19 +6,37 @@
         <p class="fw-bold" style="cursor: pointer" onclick="toggleFilterDiv('.user-filter-div')">
             Author <i class="bi bi-chevron-down text-secondary"></i>
         </p>
+        <form method="get">
+            <div class="page-search-div me-2">
+                <input type="text" value="{{ request('keyword') }}" name="keyword" id="keyword" class="search-input">
+                <button class="search-btn" type="submit">
+                    <i class="bi bi-search"></i>
+                </button>
+            </div>
+        </form>
     </div>
     <div class="row category-filter-div d-none animate__animated animate__fadeOutUp">
         @foreach(\App\Models\Category::all() as $category)
-            <div class="col-6 col-md-4 col-lg-3 col-xl-2 my-2 text-center">
-                <a href="#" class="text-decoration-none text-light fst-italic fw-light">{{ $category->title }}</a>
-            </div>
+            @if($category->posts()->count() > 0)
+                <div class="col-6 col-md-4 col-lg-3 my-2 text-center">
+                    <a href="{{ route('page.by-category',$category->slug) }}" class="text-decoration-none text-light fst-italic fw-light">
+                        {{ $category->title }}
+                        <span class="badge text-bg-light">{{ $category->posts()->count() }}</span>
+                    </a>
+                </div>
+            @endif
         @endforeach
     </div>
     <div class="row user-filter-div d-none animate__animated animate__fadeOutUp">
         @foreach(\App\Models\User::all() as $user)
-            <div class="col-6 col-md-4 col-lg-3 col-xl-2 my-2 text-center">
-                <a href="#" class="text-decoration-none text-light fst-italic fw-light">{{ $user->name }}</a>
-            </div>
+            @if($user->posts()->count() > 0)
+                <div class="col-6 col-md-4 col-lg-3 my-2 text-center">
+                    <a href="{{ route('page.by-user',$user->id) }}" class="text-decoration-none text-light fst-italic fw-light">
+                        {{ $user->name }}
+                        <span class="badge text-bg-light">{{ $user->posts()->count() }}</span>
+                    </a>
+                </div>
+            @endif
         @endforeach
     </div>
 </div>
