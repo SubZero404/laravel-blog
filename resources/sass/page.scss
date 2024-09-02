@@ -7,6 +7,9 @@
 // animate
 @import "animate.css/animate.min.css";
 
+// venobox
+@import "venobox/dist/venobox.min.css";
+
 body {
     padding: 0;
     margin: 0;
@@ -76,6 +79,7 @@ body {
         height: 40vh !important;
     }
     .carousel-item {
+        position: relative;
         height: 40vh !important;
         img {
             width: 100%;

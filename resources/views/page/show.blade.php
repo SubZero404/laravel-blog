@@ -24,9 +24,9 @@
                         </div>
                         <div class="carousel-inner">
                             @foreach($post->photos as $photo)
-                                <div class="carousel-item position-relative">
+                                <a class="my-image-links carousel-item" data-gall="gallery01" href="{{ asset('storage/'.$photo->name) }}">
                                     <img src="{{ asset('storage/'.$photo->name) }}" alt="{{ $photo->name }}">
-                                </div>
+                                </a>
                             @endforeach
                         </div>
                         @push('script')
