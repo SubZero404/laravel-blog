@@ -16,17 +16,22 @@
         </a>
         <div class="navbar-nav">
             @auth
-                <div class="d-flex flex-column justify-content-start align-items-center pt-2">
-                    <p class="me-2 fw-bold" style="cursor: pointer" onclick="toggleLogout()">Kyal Sin Tun <i class="bi bi-caret-down-fill"></i></p>
-                    <a class="nav-item d-none logout-link text-light me-2 text-decoration-none animate__animated animate__fadeOutUp"
-                       href="{{ route('logout') }}"
-                       onclick="event.preventDefault();
+                <div class="d-flex flex-column justify-content-start align-items-center pt-2 overflow-hidden">
+                    <p class="me-2 fw-bold mb-0" style="cursor: pointer" onclick="toggleLogout()">Kyal Sin Tun <i class="bi bi-caret-down-fill"></i></p>
+                    <div class="menu-div d-flex flex-column d-none animate__animated animate__fadeOutUp">
+{{--                        to logout--}}
+                        <a class="nav-item text-light me-2 text-decoration-none"
+                           href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
-                    </a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
+                            {{ __('Logout') }}
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+{{--                        link to go to dashboard--}}
+                        <a href="{{ route('home') }}" class="nav-item text-light me-2 text-decoration-none">dashboard</a>
+                    </div>
                 </div>
             @else
                 @if (Route::has('login'))
@@ -48,7 +53,7 @@
 @push('script')
     <script>
         function toggleLogout() {
-            let logout_link = document.querySelector('.logout-link');
+            let logout_link = document.querySelector('.menu-div');
 
             if (logout_link.classList.contains('d-none')) {
                 // If currently hidden, remove 'd-none' and add 'animate__fadeInDown'

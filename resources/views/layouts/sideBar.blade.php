@@ -11,13 +11,13 @@
         </li>
 
         <li class="nav-item fs-6 px-2 py-3">
-            <a href="{{ route('home') }}" class="nav-link p-0 text-decoration-none text-white text-start">
-                <i class="me-2 bi bi-grid-1x2-fill"></i> Analysis
+            <a href="{{ route('page.index') }}" class="nav-link p-0 text-decoration-none text-white text-start">
+                <i class="me-2 bi bi-window-stack"></i> To Blog
             </a>
         </li>
         <li class="nav-item fs-6 px-2 py-3">
-            <a href="#" class="nav-link p-0 text-decoration-none text-white text-start">
-                <i class="me-2 bi bi-window-stack"></i> To Blog
+            <a href="{{ route('home') }}" class="nav-link p-0 text-decoration-none text-white text-start">
+                <i class="me-2 bi bi-grid-1x2-fill"></i> Analysis
             </a>
         </li>
         <li class="nav-item fs-6 px-2 py-3">

@@ -2,6 +2,9 @@
 
 @section('content')
     <div class="d-flex flex-column align-items-center">
+        <div class="col-12 col-md-10 col-lg-8 text-end">
+            <a href="{{ route('page.index') }}" class="btn btn-outline-light btn-sm"><i class="bi bi-x-lg"></i></a>
+        </div>
         <div class="col-12 col-md-10 col-lg-8 d-flex flex-column align-items-center mb-4">
             <h2 class="fs-5 fw-light mb-4">{{ $post->title }}</h2>
             <div class="w-100 d-flex justify-content-around text-secondary fw-bold">
@@ -10,7 +13,7 @@
                 <small class="fst-italic">{{ $post->user->name }}</small>
             </div>
         </div>
-        <div class="col-12 col-md-10 col-lg-8">
+        <div class="col-12 col-md-10">
             @if(!$post->photos->isEmpty())
                 <div class="p-2 mb-3 post-photo-show-div d-flex justify-content-center">
                     <div id="carouselExampleIndicators" class="carousel slide col-12 col-md-10 col-lg-8">
