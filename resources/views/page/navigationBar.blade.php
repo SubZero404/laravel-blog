@@ -1,75 +1,55 @@
-<nav class="navbar navbar-expand-lg">
-    <div class="w-100 d-flex justify-content-between pt-2">
-        <div class="navbar-nav">
-            <a href="#" class="nav-item text-light me-2">
-                <i class="bi bi-facebook"></i>
-            </a>
-            <a href="#" class="nav-item text-light me-2">
-                <i class="bi bi-instagram"></i>
-            </a>
-            <a href="#" class="nav-item text-light me-2">
-                <i class="bi bi-tiktok"></i>
-            </a>
-        </div>
-        <a class="navbar-brand text-light my-2 fs-1 fw-bold" href="{{ url('/') }}">
-            <i class="bi bi-strava fs-2"></i> Blog
+<nav class="navbar navbar-expand-lg shadow-sm">
+    <div class="container d-flex justify-content-between align-items-center bg-black px-4 py-2 m-1 rounded">
+
+        <!-- Logo -->
+        <a class="navbar-brand text-light d-flex align-items-center gap-2 fw-bold fs-5" href="{{ url('/') }}">
+            <i class="bi bi-strava fs-4"></i>
+            <span>Blog</span>
         </a>
-        <div class="navbar-nav">
+
+        <!-- Right Side -->
+        <div class="navbar-nav d-flex align-items-center">
+
             @auth
-                <div class="d-flex flex-column justify-content-start align-items-center pt-2 overflow-hidden">
-                    <p class="me-2 fw-bold mb-0" style="cursor: pointer" onclick="toggleLogout()">Kyal Sin Tun <i class="bi bi-caret-down-fill"></i></p>
-                    <div class="menu-div d-flex flex-column d-none animate__animated animate__fadeOutUp">
-{{--                        to logout--}}
-                        <a class="nav-item text-light me-2 text-decoration-none"
-                           href="{{ route('logout') }}"
-                           onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-{{--                        link to go to dashboard--}}
-                        <a href="{{ route('home') }}" class="nav-item text-light me-2 text-decoration-none">dashboard</a>
-                    </div>
+                <!-- Profile Dropdown -->
+                <div class="dropdown">
+                    <p class="text-light fw-semibold dropdown-toggle mb-0"
+                       style="cursor:pointer;"
+                       data-bs-toggle="dropdown">
+                        {{ Auth::user()->name }}
+                    </p>
+
+                    <ul class="dropdown-menu dropdown-menu-end mt-2 shadow-sm fade-down">
+                        <li>
+                            <a class="dropdown-item" href="{{ route('home') }}">
+                                Dashboard
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item text-danger"
+                               href="{{ route('logout') }}"
+                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                Logout
+                            </a>
+                        </li>
+                    </ul>
+
+                    <!-- Hidden logout form -->
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
                 </div>
+
             @else
                 @if (Route::has('login'))
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                    </li>
+                    <a class="nav-link text-light mx-2 hover-white" href="{{ route('login') }}">Login</a>
                 @endif
 
                 @if (Route::has('register'))
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                    </li>
+                    <a class="nav-link text-light mx-2 hover-white" href="{{ route('register') }}">Register</a>
                 @endif
             @endauth
+
         </div>
     </div>
 </nav>
-
-@push('script')
-    <script>
-        function toggleLogout() {
-            let logout_link = document.querySelector('.menu-div');
-
-            if (logout_link.classList.contains('d-none')) {
-                // If currently hidden, remove 'd-none' and add 'animate__fadeInDown'
-                logout_link.classList.remove('d-none');
-                logout_link.classList.remove('animate__fadeOutUp');
-                logout_link.classList.add('animate__fadeInDown');
-            } else {
-                // If currently visible, add 'animate__fadeOutUp'
-                logout_link.classList.remove('animate__fadeInDown');
-                logout_link.classList.add('animate__fadeOutUp');
-
-                // Wait for the animation to complete before hiding the element
-                logout_link.addEventListener('animationend', function() {
-                    logout_link.classList.add('d-none');
-                }, { once: true });
-            }
-        }
-    </script>
-@endpush

@@ -21,7 +21,7 @@
     @stack('style')
 </head>
 <body>
-    <main id="app" class="container-fluid">
+    <main id="app" class="container-fluid bg-dark min-vh-100">
         @auth
             <div class="row">
                 <!--            navigation menu bar start -->

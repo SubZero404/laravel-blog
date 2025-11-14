@@ -1,21 +1,39 @@
-<div class="w-100 filter-div overflow-hidden mb-2">
-    <div class="w-100 d-flex flex-row justify-content-around">
-        <p class="fw-bold" style="cursor: pointer" onclick="toggleFilterDiv('.category-filter-div')">
-            Categories <i class="bi bi-chevron-down text-secondary"></i>
-        </p>
-        <p class="fw-bold" style="cursor: pointer" onclick="toggleFilterDiv('.user-filter-div')">
-            Author <i class="bi bi-chevron-down text-secondary"></i>
-        </p>
-        <form method="get">
-            <div class="page-search-div me-2">
-                <input type="text" value="{{ request('keyword') }}" name="keyword" id="keyword" class="search-input">
-                <button class="search-btn" type="submit">
-                    <i class="bi bi-search"></i>
-                </button>
-            </div>
-        </form>
+<div class="w-100 filter-div mb-3">
+    <div class="w-100 d-flex justify-content-center">
+        <div class="col-12 col-md-10 col-lg-9 col-xl-8 d-flex flex-wrap gap-2">
+
+            <!-- Category Filter -->
+            <p class="fw-bold filter-toggle" onclick="toggleFilterDiv('.category-filter-div')">
+                Categories <i class="bi bi-chevron-down text-secondary"></i>
+            </p>
+
+            <!-- Author Filter -->
+            <p class="fw-bold filter-toggle" onclick="toggleFilterDiv('.user-filter-div')">
+                Author <i class="bi bi-chevron-down text-secondary"></i>
+            </p>
+
+            <!-- Search Input -->
+            <form method="get" class="flex-grow-1">
+                <div class="input-group rounded shadow-sm">
+                    <input 
+                        type="text"
+                        class="form-control bg-light border-0"
+                        name="keyword"
+                        id="keyword"
+                        placeholder="Search..."
+                        value="{{ request('keyword') }}"
+                    >
+                    <button class="btn btn-light" type="submit">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </div>
+            </form>
+
+        </div>
     </div>
-    <div class="row category-filter-div d-none animate__animated animate__fadeOutUp">
+
+    <!-- Category Dropdown -->
+    <div class="row category-filter-div d-none animate__animated animate__fadeOutUp mt-2">
         @foreach(\App\Models\Category::all() as $category)
             @if($category->posts()->count() > 0)
                 <div class="col-6 col-md-4 col-lg-3 my-2 text-center">
@@ -27,7 +45,9 @@
             @endif
         @endforeach
     </div>
-    <div class="row user-filter-div d-none animate__animated animate__fadeOutUp">
+
+    <!-- Author Dropdown -->
+    <div class="row user-filter-div d-none animate__animated animate__fadeOutUp mt-2">
         @foreach(\App\Models\User::all() as $user)
             @if($user->posts()->count() > 0)
                 <div class="col-6 col-md-4 col-lg-3 my-2 text-center">

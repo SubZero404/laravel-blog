@@ -1,12 +1,12 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-black m-2 rounded-1 sticky-top">
+<nav class="navbar navbar-expand-md navbar-dark bg-black rounded-1 sticky-top">
     <div class="d-flex container-fluid justify-content-between">
         <!-- Left Side Of Navbar -->
         <div class="px-5">
             <!--    <ul class="navbar-nav me-auto">-->
             <!--    </ul>-->
             @guest
-                <a class="navbar-brand w-100 text-danger my-2 fs-4 fw-bold" href="{{ url('/') }}">
-                    <i class="bi bi-strava fs-2"></i> STRAVA
+                <a class="navbar-brand w-100 text-danger my-2 fs-6 fw-bold" href="{{ url('/') }}">
+                    <i class="bi bi-strava fs-4"></i> Blog
                 </a>
             @endguest
         </div>

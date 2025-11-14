@@ -15,11 +15,11 @@
     {{--    style--}}
     @stack('style')
 </head>
-<body class="bg-black">
+<body class="bg-dark">
 <main id="app" class="container-fluid">
     <div class="container">
         @include('page.navigationBar')
-        <hr>
+        <div class=" p-2"></div>
         @yield('content')
     </div>
 </main>

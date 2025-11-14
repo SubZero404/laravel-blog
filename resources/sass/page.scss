@@ -1,5 +1,6 @@
 // bootstrap
-@import "bootstrap";
+@import 'bootstrap';
+
 
 // bootstrap-icon
 @import "bootstrap-icons/font/bootstrap-icons.css";
@@ -18,60 +19,157 @@ body {
 
 // for page navigation bar
 .page-search-div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
     .search-input {
         border: none;
-        border-bottom: 1px solid gray;
-        padding: 0 8px;
-        transition: border-bottom-color 0.3s ease;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+        padding: 4px 8px;
+        background: transparent;
+        color: white;
+        transition: all 0.3s ease;
+
+        &::placeholder {
+            color: rgba(255, 255, 255, 0.45);
+        }
+
         &:focus {
             border-bottom-color: white;
             outline: none;
+        }
 
-            &:hover {
-                border-bottom-color: white;
-            }
+        &:hover:not(:focus) {
+            border-bottom-color: rgba(255, 255, 255, 0.6);
         }
     }
+
     .search-btn {
         border: none;
         outline: none;
         background: none;
-        color: gray;
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 1.2rem;
+        padding: 4px;
+        transition: color 0.3s ease, transform 0.2s ease;
+
+        &:hover {
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        &:active {
+            transform: scale(0.95);
+        }
+    }
+}
+
+
+// for postFilter.blade.php
+.filter-div {
+    .filter-toggle {
+        cursor: pointer;
+        padding: 6px 12px;
+        border-radius: 6px;
+        transition: background 0.2s ease, color 0.2s ease;
+
         &:hover {
             color: white;
         }
     }
-}
 
-// for postFilter.blade.php
-.filter-div {
-    .user-filter-div,
-    .category-filter-div{
-        height: 20vh;
-        overflow-y: scroll;
-        scroll-snap-type: y mandatory;
-        div {
-            scroll-snap-align: center;
+    .input-group {
+        input.form-control {
+            border-radius: 6px 0 0 6px;
+            padding: 6px 12px;
+            background: #fff;       // white background
+            color: #000;            // black text
+            &::placeholder {
+                color: #666;        // dark gray placeholder
+            }
+        }
+
+        .btn {
+            border-radius: 0 6px 6px 0;
+            transition: background 0.2s ease;
+
+            &:hover {
+                background: #c7c7c7;
+            }
+        }
+    }
+
+    .category-filter-div,
+    .user-filter-div {
+        .col-6,
+        .col-md-4,
+        .col-lg-3 {
+            a {
+                display: block;
+                padding: 6px 10px;
+                border-radius: 6px;
+                transition: background 0.2s ease;
+                
+                &:hover {
+                    background: rgba(210, 10, 46, 0.2);
+                }
+            }
         }
     }
 }
+
 
 // for page.index.blade.php
 .post-card {
+    background: #0e0b16;
+    border: 1px solid #1d1a25;
+    padding: 10px;
+    display: flex;
+    gap: 15px;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+
+    &:hover {
+        transform: translateY(-2px);
+    }
+
     .img-div {
-        width: 250px;
-        height: 250px;
+        width: 180px;
+        height: 180px;
+        overflow: hidden;
+        background: #111;
+        border: 1px solid #222;
+
         img {
             width: 100%;
             height: 100%;
-            object-position: center;
             object-fit: cover;
+            transition: transform 0.4s ease;
+
+            &:hover {
+                transform: scale(1.05);
+            }
         }
     }
+
     .content-div {
-        width: calc(100% - 250px);
+        flex: 1;
+        padding: 5px 0;
+
+        .title h3 {
+            font-weight: 600;
+        }
+
+        .meta span {
+            font-size: 0.85rem;
+        }
+
+        .description p {
+            font-size: 0.9rem;
+        }
     }
 }
+
 
 //for page show.blade photos
 .post-photo-show-div {
